@@ -97,7 +97,7 @@ export default function MusicPlayerSlider() {
                 <CoverImage>
                     <img
                         alt="Sunday"
-                        src="./../../src/assets/dummusic.png"
+                        src="/public/assets/dummusic.png"
                         className='w-full h-full object-cover'
                     />
                 </CoverImage>
