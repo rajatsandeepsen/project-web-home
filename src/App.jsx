@@ -3,11 +3,32 @@ import { ShaderGradientCanvas, ShaderGradient } from "shadergradient";
 import * as reactSpring from "@react-spring/three";
 import * as drei from "@react-three/drei";
 import * as fiber from "@react-three/fiber";
-import "./App.css"
 import MusicPlayerSlider from "./components/musicPlayer";
 import { Bot, Github, Mail, Search, Twitter } from "lucide-react";
+import { useEffect, useState } from "react";
+import { makeGetRequest } from '../api/axios-request'; // Importing the function from axios-request.js
+import './App.css'
 
 function App() {
+  const [newsData, setNewsData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await makeGetRequest(); // Call the function to fetch data
+        setNewsData(data.results.slice(0, 2));
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array ensures useEffect runs once on component mount
+
+  console.log(newsData);
   return (
     <>
       <div className="h-dvh flex flex-col justify-between">
@@ -21,11 +42,9 @@ function App() {
               <MusicPlayerSlider />
             </div>
             <div className="p-5 border border-y-0 border-r-0 border-t-0 content-center">
-              <p className="bg-[url('./assets/logo.png')] w-28 h-14 bg-contain bg-no-repeat m-auto"></p>
+              <p className="bg-[url('/public/assets/logo.png')] w-28 h-14 bg-contain bg-no-repeat m-auto"></p>
             </div>
           </div>
-          <div></div>
-          <div></div>
         </div>
 
 
@@ -36,14 +55,14 @@ function App() {
 
             <div className="w-fit flex gap-3 bg-[#161616]/40 backdrop-blur-md p-2 rounded-3xl">
               <div className="flex flex-col gap-3">
-                <div className="bg-black/40 w-40 h-2/4 flex justify-center items-center rounded-2xl">
+                <div className="bg-black/40 w-60 h-2/4 flex justify-center items-center rounded-2xl">
                   <Mail />
                 </div>
-                <div className="bg-black/40 w-40 h-2/4 flex justify-center items-center rounded-2xl">
+                <div className="bg-black/40 w-60 h-2/4 flex justify-center items-center rounded-2xl">
                   <Twitter />
                 </div>
               </div>
-              <div className="bg-custom-gradient w-56 h-44 flex justify-center items-center rounded-2xl">
+              <div className="bg-custom-gradient w-56 h-56 flex justify-center items-center rounded-2xl">
                 <Github size={60} />
               </div>
             </div>
@@ -51,7 +70,7 @@ function App() {
             <div>
               <div className="relative">
                 <input
-                  className="bg-black/40 backdrop-blur-md w-96 h-10 p-4 pl-10 flex justify-center items-center rounded-lg border placeholder-gray-400 text-white"
+                  className="bg-black/40 backdrop-blur-md w-[485px] h-10 p-4 pl-10 flex justify-center items-center rounded-lg border placeholder-gray-400 text-white"
                   type="search"
                   placeholder="Where do you wanna go today?"
                 />
@@ -64,7 +83,7 @@ function App() {
               </div>
             </div>
 
-            <h1 className="text-6xl w-96 leading-snug">Meet the web again</h1>
+            <h1 className="text-6xl w-[485px] leading-snug">Meet the web again</h1>
 
           </div>
 
@@ -85,14 +104,19 @@ function App() {
                 placeholder="Talk to our ai "
               />
 
-              <div className="h-36 p-5 bg-black/40 rounded-3xl flex items-center">
-                recents
+              <div className="h-36 p-5 px-20 bg-black/40 rounded-3xl flex gap-20 justify-center items-center">
+                <img src="https://www.google.com/s2/favicons?domain=figma.com&sz=40" alt="" />
+                <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=40" alt="" />
+                <img src="https://www.google.com/s2/favicons?domain=x.com&sz=40" alt="" />
+                <img src="https://www.google.com/s2/favicons?domain=whatsapp.com&sz=40" alt="" />
+                <img src="https://www.google.com/s2/favicons?domain=savee.it&sz=40" alt="" />
               </div>
-
-              <ul className="list-disc text-2xl ">
-                <li>Scientists re-emerge after a year in Mars simulation project</li>
-                <li>Apple okays Epic Games marketplace app in Europe</li>
-              </ul>
+              {isLoading ? <p>Loading...</p> :
+                <ul className="list-disc text-2xl p-5 rounded-3xl flex flex-col gap-5">
+                  {newsData.map((article, index) => (
+                    <li key={index}>{article.title}</li>
+                  ))}
+                </ul>}
             </div>
 
 
@@ -100,8 +124,17 @@ function App() {
           </div>
         </div>
 
-        <div className="flex z-50  relative h-20 border-t-2">
+        <div className="flex z-50 items-center justify-center relative h-20 border-t-2">
           <div className="border-r-1 px-10 flex justify-center items-center">100 cookies blocked</div>
+          <div className="w-[2px] h-5 bg-white rounded-md"></div>
+          <div className="border-r-1 px-10 flex justify-center items-center">34Mbps & 20Mbps </div>
+          <div className="w-[2px] h-5 bg-white rounded-md"></div>
+          <div className="border-r-1 px-10 flex justify-center items-center">weather is rainy today</div>
+          <div className="w-[2px] h-5 bg-white rounded-md"></div>
+          <div className="border-r-1 px-10 flex justify-center items-center">you have visited 2700 unique websites</div>
+          <div className="w-[2px] h-5 bg-white rounded-md"></div>
+          <div className="border-r-1 px-10 flex justify-center items-center">you have spent 300 hours and 47 minutes here with us</div>
+          {/* <div className="w-[2px] h-5 bg-white rounded-md"></div> */}
         </div>
       </div>
 
@@ -128,13 +161,6 @@ function App() {
 
         </ShaderGradientCanvas>
       </div>
-
-
-
-
-
-
-
     </>
   );
 }

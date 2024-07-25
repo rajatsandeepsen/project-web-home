@@ -5,11 +5,10 @@
   "type": "module",
   "homepage": "https://jovit-mathew236.github.io/web-home-page",
   "scripts": {
-    "dev": "run-p server vite",
+    "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "server": "node server",
     "predeploy": "bun run build",
     "deploy": "gh-pages -d dist"
   },
