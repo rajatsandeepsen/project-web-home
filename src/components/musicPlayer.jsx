@@ -114,6 +114,7 @@ export default function MusicPlayerSlider({ currentlyPlayingTrack, onNextTrack, 
             });
 
             if (response.ok) {
+                // console.log(newValue);
                 setPosition(newValue);
             } else {
                 console.error('Failed to seek');
