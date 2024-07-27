@@ -1,8 +1,8 @@
 import React from "react";
 
-const CLIENT_ID = "4613ad851712424d87c043c5b029da27";
+const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-const REDIRECT_URI = "http://localhost:5173/callback";
+const REDIRECT_URI = `${import.meta.env.VITE_BASE_URL}/callback`;
 const SCOPES = [
   "user-read-currently-playing",
   "user-read-playback-state",

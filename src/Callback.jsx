@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const CLIENT_ID = "4613ad851712424d87c043c5b029da27"
-const CLIENT_SECRET = "99661f511d374780a6447471f4ba13bf"
-const REDIRECT_URI = "http://localhost:5173/callback"
+const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+const CLIENT_SECRET = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
+const REDIRECT_URI = `${import.meta.env.VITE_BASE_URL}/callback`
 
 function Callback() {
     const navigate = useNavigate();
