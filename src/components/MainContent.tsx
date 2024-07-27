@@ -84,27 +84,54 @@ const MainContent: React.FC<MainContentProps> = ({ newsData, isLoading }) => {
           />
 
           <div className="lg:h-36 md:p-5 bg-black/40 rounded-3xl flex gap-20 justify-center items-center overflow-scroll">
-            <img
-              src="https://www.google.com/s2/favicons?domain=figma.com&sz=40"
-              alt=""
-            />
-            <img
-              src="https://www.google.com/s2/favicons?domain=youtube.com&sz=40"
-              alt=""
-            />
-            <img
-              src="https://www.google.com/s2/favicons?domain=x.com&sz=40"
-              alt=""
-            />
-            <img
-              src="https://www.google.com/s2/favicons?domain=whatsapp.com&sz=40"
-              alt=""
-            />
-            <img
-              src="https://www.google.com/s2/favicons?domain=savee.it&sz=40"
-              alt=""
-            />
+            <a
+              href="https://figma.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://www.google.com/s2/favicons?domain=figma.com&sz=40"
+                alt="Figma"
+              />
+            </a>
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://www.google.com/s2/favicons?domain=youtube.com&sz=40"
+                alt="YouTube"
+              />
+            </a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://www.google.com/s2/favicons?domain=x.com&sz=40"
+                alt="X"
+              />
+            </a>
+            <a
+              href="https://whatsapp.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://www.google.com/s2/favicons?domain=whatsapp.com&sz=40"
+                alt="WhatsApp"
+              />
+            </a>
+            <a
+              href="https://savee.it"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://www.google.com/s2/favicons?domain=savee.it&sz=40"
+                alt="Savee"
+              />
+            </a>
           </div>
+
           {isLoading ? (
             <p>Loading...</p>
           ) : (
