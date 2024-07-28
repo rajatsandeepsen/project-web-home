@@ -42,8 +42,8 @@ const MainContent: React.FC<MainContentProps> = ({ newsData, isLoading }) => {
           </div>
         </div>
 
-        <div className="w-full">
-          <div className="relative w-11/12 m-auto">
+        <div className="w-full md:w-auto">
+          <div className="relative w-11/12 md:w-auto m-auto">
             <input
               className="bg-black/40 backdrop-blur-md w-full md:w-[485px] h-10 p-4 pl-10 flex justify-center items-center rounded-lg border placeholder-gray-400 text-white"
               type="search"
